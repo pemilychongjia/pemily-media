@@ -1,5 +1,5 @@
 # 使用多阶段构建
-FROM node:18-alpine AS deps
+FROM node:20-alpine AS deps
 
 # 安装必要工具
 RUN apk add --no-cache libc6-compat openssl python3 make g++
@@ -17,7 +17,7 @@ COPY prisma ./prisma/
 RUN bun install --frozen-lockfile
 
 # 构建阶段
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -36,7 +36,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN bun run build
 
 # 运行阶段
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
