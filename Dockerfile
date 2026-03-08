@@ -62,10 +62,6 @@ COPY --from=builder /app/db ./db
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/z-ai-web-dev-sdk ./node_modules/z-ai-web-dev-sdk
-COPY --from=builder /app/node_modules/canvas ./node_modules/canvas
-
-# 复制环境配置
-COPY --from=builder /app/.env ./
 
 # 设置权限
 RUN chown -R nextjs:nodejs /app
